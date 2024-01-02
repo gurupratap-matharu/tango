@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "tango"
+version = "0.1.0"
+description = "All about Argentina tango"
+authors = ["Gurupratap Matharu <gurupratap.matharu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11"
+wagtail = "^5.2.2"
+psycopg2 = "^2.9.9"
+python-dotenv = "^1.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.12.1"
+ruff = "^0.1.9"
+djlint = "^1.34.1"
+isort = "^5.13.2"
+ipython = "^8.19.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+exclude = [
+    "*migrations*",
+    ]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+skip = ["docs", "migrations"]
+known_django = "django"
+known_wagtail = "wagtail"
+sections = "FUTURE,STDLIB,DJANGO,WAGTAIL,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+
+[tool.black]
+exclude = '''
+/(
+  | migrations | docs
+)/
+'''
+
+
+[tool.djlint]
+blank_line_before_tag = "load,extends,block,include"
+blank_line_after_tag = "load,extends,endblock,include"
+close_void_tags = true
+custom_blocks = "toc,example"
+custom_html = "mjml"
+exclude = ".venv,venv,.tox,.eggs,.git"
+extend_exclude = ".custom"
+format_attribute_template_tags = true
+format_css = true
+format_js = true
+# ignore = "H006"
+max_attribute_length = 120
+max_line_length = 120
+profile = "django"
+use_gitignore = true
+
+[tool.djlint.css]
+indent_size = 5
+
+[tool.djlint.js]
+indent_size = 5
